@@ -762,14 +762,6 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
         }
     }
 
-    if (opts.search_stream) {
-        opts.print_break = 0;
-        opts.print_path = PATH_PRINT_NOTHING;
-        if (opts.print_line_numbers != 2) {
-            opts.print_line_numbers = 0;
-        }
-    }
-
     if (accepts_query && argc > 0) {
         // use the provided query
         opts.query = ag_strdup(argv[0]);
@@ -820,6 +812,14 @@ void parse_options(int argc, char **argv, char **base_paths[], char **paths[]) {
         (*base_paths)[0] = realpath(path, tmp);
         i = 1;
     }
+    if (opts.search_stream) {
+        opts.print_break = 0;
+        opts.print_path = PATH_PRINT_NOTHING;
+        if (opts.print_line_numbers != 2) {
+            opts.print_line_numbers = 0;
+        }
+    }
+
     (*paths)[i] = NULL;
     (*base_paths)[i] = NULL;
 
